@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FcGoogle } from "react-icons/fc";
 
 function Login() {
@@ -27,8 +27,17 @@ function Login() {
               Google
             </button>
           </div>
+          <button
+              type="button"
+              onClick={() => (window.location.href = "/about")}
+              className="btn btn-outline mx-auto w-64 rounded-md border border-blue-500 py-2 text-blue-500 hover:bg-blue-500 hover:text-white mt-10 "
+            >
+              Register
+            </button>
         </div>
+       
       </form>
+     
     </div>
   );
 }

@@ -1,17 +1,17 @@
-// firebase.js
 import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth";
 
-// Bu yerga Firebase konfiguratsiya ma'lumotlarini joylashtirasiz:
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_APP.firebaseapp.com",
-  projectId: "YOUR_APP",
-  storageBucket: "YOUR_APP.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID",
+  apiKey: ".",
+  authDomain: "TfijlH2P6tfgB_kzepCuV_-ji3Pd7waZSo1Gx4SDBbE'",
+  projectId: "TfijlH2P6tfgB_kzepCuV_-ji3Pd7waZSo1Gx4SDBbE'",
+  storageBucket: "TfijlH2P6tfgB_kzepCuV_-ji3Pd7waZSo1Gx4SDBbE'",
+  messagingSenderId: "TfijlH2P6tfgB_kzepCuV_-ji3Pd7waZSo1Gx4SDBbE'",
+  appId: "TfijlH2P6tfgB_kzepCuV_-ji3Pd7waZSo1Gx4SDBbE'",
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
-export default app;
+export { auth, googleProvider, signInWithPopup, createUserWithEmailAndPassword };

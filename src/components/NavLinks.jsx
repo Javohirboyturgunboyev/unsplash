@@ -7,12 +7,12 @@ const navLinks = [
   },
   {
     path: "/about",
-    text: "About",
+    text: "Register",
   },
-  {
-    path: "/contact",
-    text: "Contact",
-  },
+  // {
+  //   path: "/contact",
+  //   text: "Contact",
+  // },
 ];
 function NavLinks() {
   return (

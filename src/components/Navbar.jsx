@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { FaDownload, FaHeart, FaMoon, FaSun } from "react-icons/fa";
 import { FcStackOfPhotos } from "react-icons/fc";
 import { NavLinks } from "./";
-
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 const themeFromLocalStorage = () => {
   return localStorage.getItem("theme") || "winter";
 };
+
+
 function Navbar() {
   const {likedImages = []} = useGlobalContext()
   const [theme, setTheme] = useState(themeFromLocalStorage());
@@ -49,7 +50,7 @@ function Navbar() {
         </div>
         <div className="navbar-end flex items-center gap-10 ">
           <div className="indicator">
-            <span className="badge badge-secondary badge-sm indicator-item">
+            <span className="badge badge-primary badge-sm indicator-item">
             {likedImages.length}
               
             </span>
@@ -57,7 +58,7 @@ function Navbar() {
           </div>
           <Link to={"/liked-images"}>
             <div className="indicator">
-              <span className="badge badge-secondary badge-sm indicator-item">
+              <span className="badge badge-primary badge-sm indicator-item">
               {likedImages ? likedImages.length : 0}
                 
               </span>
@@ -77,6 +78,7 @@ function Navbar() {
 
             <FaMoon className="swap-on h-6 w-6 fill-current" />
           </label>
+   
         </div>
       </div>
     </header>

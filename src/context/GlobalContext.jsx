@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import PropTypes from "prop-types";
 
 export const GlobalContext = createContext();
 
@@ -7,7 +8,7 @@ const changeState = (state, action) => {
 
   switch (type) {
     case "LIKE":
-      // Agar rasm allaqachon mavjud bo'lsa, yana qo'shmaymiz
+   
       if (!state.LikedImages.some((image) => image.id === payload.id)) {
         return {
           ...state,
@@ -38,3 +39,10 @@ export function GlobalContextProvider({ children }) {
     </GlobalContext.Provider>
   );
 }
+
+
+GlobalContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default GlobalContextProvider;
