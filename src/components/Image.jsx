@@ -29,7 +29,7 @@ function Image({ image }) {
   };
 
   return (
-    <div className="relative group  w-[300px] bg-gray-300 p-3  rounded-2xl ">
+    <div className="relative group  w-[300px] bg-gray-300 p-3  rounded-2xl shadow-black shadow-2xl hover:bg-gray-400 hover: shadow-4xl object-cover transition-transform duration-300 hover:scale-110 hover:shadow-xl ">
      
       <span
         onClick={addLikedImage}
@@ -42,7 +42,7 @@ function Image({ image }) {
       <img
         src={urls.regular}
         alt={alt_description || "No description available"}
-        className="mb-5 w-full  cursor-pointer rounded-lg "
+        className="mt-2 w-full  cursor-pointer rounded-3xl "
       />
 
       {user && (

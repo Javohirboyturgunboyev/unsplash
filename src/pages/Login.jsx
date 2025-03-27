@@ -1,45 +1,70 @@
+import { useState } from "react";
+import axios from "axios";
 
-import { FcGoogle } from "react-icons/fc";
+const Login = ({ setIsRegister }) => {
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
-function Login() {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("https://api.escuelajs.co/api/v1/auth/login", formData);
+      console.log("Login response:", response.data); // Tokenni tekshirish uchun
+
+      if (response.data.access_token) {
+        localStorage.setItem("token", response.data.access_token);
+        alert("Login successful!");
+      } else {
+        alert("Error: Invalid login response!");
+      }
+    } catch (error) {
+      console.error("Login error:", error.response || error);
+      alert("Error: " + (error.response?.data?.message || "Something went wrong"));
+    }
+  };
+
   return (
-    <div>
-      <form className="flex">
-        <div className="w-[40%] bg-[url('https://picsum.photos/800/1200')] bg-cover bg-center"></div>
-        <div className="flex min-h-screen w-[60%] flex-col items-center justify-center">
-          <h1 className="mb-4 text-2xl font-bold">Login</h1>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-md w-80">
+        <h2 className="text-xl font-semibold text-center mb-4">Login</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="email"
+            name="email"
             placeholder="Email"
-            className="mb-4 w-64 rounded border border-gray-300 p-2"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full p-2 border rounded"
           />
           <input
             type="password"
+            name="password"
             placeholder="Password"
-            className="mb-4 w-64 rounded border border-gray-300 p-2"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="w-full p-2 border rounded"
           />
-          <div className="flex gap-6">
-            <button className="w-[110px] rounded bg-blue-500 p-2 text-white">
-              Login
-            </button>
-            <button className="flex w-[110px] items-center gap-2 rounded bg-blue-500 p-2 text-white">
-              <FcGoogle className="h-5 w-5" />
-              Google
-            </button>
-          </div>
+          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+            Login
+          </button>
+        </form>
+        <p className="text-center mt-4 text-sm">
+          Don’t have an account?
           <button
-              type="button"
-              onClick={() => (window.location.href = "/about")}
-              className="btn btn-outline mx-auto w-64 rounded-md border border-blue-500 py-2 text-blue-500 hover:bg-blue-500 hover:text-white mt-10 "
-            >
-              Register
-            </button>
-        </div>
-       
-      </form>
-     
+            onClick={() => setIsRegister && setIsRegister(true)}
+            className="text-blue-500 ml-1"
+          >
+            Register
+          </button>
+        </p>
+      </div>
     </div>
   );
-}
+};
 
 export default Login;
