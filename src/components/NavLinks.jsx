@@ -9,10 +9,15 @@ const navLinks = [
     path: "/about",
     text: "Register",
   },
-  // {
-  //   path: "/contact",
-  //   text: "Contact",
-  // },
+  {
+    path: "/contact",
+    text: "Login",
+  },
+  {
+    path : "/myself",
+    text: "Myself"
+  }
+
 ];
 function NavLinks() {
   return (

@@ -18,10 +18,10 @@ const Register = ({ setIsRegister }) => {
         avatar: "https://i.pravatar.cc/150",
       });
 
-      console.log("Registration response:", response.data); // Serverdan kelgan ma'lumotni ko‘rish
+      console.log("Registration response:", response.data);
 
       alert("Registration successful! Please login.");
-      setIsRegister && setIsRegister(false); // Agar mavjud bo‘lsa ishlaydi
+      setIsRegister && setIsRegister(false); 
     } catch (error) {
       console.error("Registration error:", error.response || error);
       alert("Error: " + (error.response?.data?.message || "Something went wrong"));

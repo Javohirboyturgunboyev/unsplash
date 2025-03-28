@@ -12,7 +12,7 @@ const Login = ({ setIsRegister }) => {
     e.preventDefault();
     try {
       const response = await axios.post("https://api.escuelajs.co/api/v1/auth/login", formData);
-      console.log("Login response:", response.data); // Tokenni tekshirish uchun
+      console.log("Login response:", response.data); 
 
       if (response.data.access_token) {
         localStorage.setItem("token", response.data.access_token);
