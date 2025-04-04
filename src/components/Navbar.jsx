@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaDownload, FaHeart, FaMoon, FaSun } from "react-icons/fa";
 import { FcStackOfPhotos } from "react-icons/fc";
@@ -9,9 +9,8 @@ const themeFromLocalStorage = () => {
   return localStorage.getItem("theme") || "winter";
 };
 
-
 function Navbar() {
-  const {likedImages = []} = useGlobalContext()
+  const { likedImages = [], likesCount } = useGlobalContext(); // <-- likesCount ni ham oldik
   const [theme, setTheme] = useState(themeFromLocalStorage());
 
   const toggleTheme = () => {
@@ -23,8 +22,9 @@ function Navbar() {
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
   return (
-    <header className="bg-base-300 ">
+    <header className="bg-base-300">
       <div className="container navbar mx-auto max-w-[1440px]">
         <div className="navbar-start">
           <Link to={"/"} className="hidden md:flex">
@@ -48,24 +48,28 @@ function Navbar() {
             <NavLinks />
           </ul>
         </div>
-        <div className="navbar-end flex items-center gap-10 ">
+        <div className="navbar-end flex items-center gap-10">
           <div className="indicator">
             <span className="badge badge-primary badge-sm indicator-item">
-            {likedImages.length}
-              
+              {likedImages.length}
             </span>
             <FaDownload className="h-6 w-6" />
           </div>
           <Link to={"/liked-images"}>
-            <div className="indicator">
-              <span className="badge badge-primary badge-sm indicator-item">
-              {likedImages ? likedImages.length : 0}
-                
-              </span>
-
+            <div className="indicator ">
+          Like image
               <FaHeart className="h-6 w-6" />
             </div>
           </Link>
+          
+          {/* Yangi Like Count indikator */}
+          <div className="indicator">
+            <span className="badge badge-primary badge-sm indicator-item">
+              {likesCount} {/* <-- Like sonini chiqaramiz */}
+            </span>
+            <FaHeart className="h-6 w-6 text-base-300" />
+          </div>
+
           <label className="swap swap-rotate">
             <input
               type="checkbox"
@@ -73,12 +77,9 @@ function Navbar() {
               value="synthwave"
               onClick={toggleTheme}
             />
-
             <FaSun className="swap-off h-6 w-6 fill-current" />
-
             <FaMoon className="swap-on h-6 w-6 fill-current" />
           </label>
-   
         </div>
       </div>
     </header>
